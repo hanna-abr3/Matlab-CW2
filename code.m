@@ -19,7 +19,7 @@ clear
 
 a = arduino()
 analogPin ='A0'
-duration = 600;                    %Duration that data will be collected for 
+duration = 601;                    %Duration that data will be collected for 
 
 %preallocate arrays for time, voltage and temperature
 time = zeros(1,duration);         
@@ -56,7 +56,6 @@ title('Temperature/Time graph')
 
 
 %d)displays the collected temperature data in the required table
-currentdate = datestr(now, 'dd/mm/yyyy');
 
 %date and location
 fprintf('\n');
@@ -66,7 +65,7 @@ fprintf('Location - London\n\n');
 
 %loop to display the temperature reading at every minute
 for minute = 0:10
-    index = minute*60+1
+    index = minute*60+1;
     fprintf('Minute\t\t\t%d\n', minute);
     fprintf('Temperature\t\t%.2f C\n\n', temperature(index));
 end
@@ -80,10 +79,46 @@ fprintf('Data logging terminated\n');
 
 
 %e)
+clear
+
+file_id = fopen('cabin_temperature.txt','w');
+
+
+%date and location
+fprintf(file_id, '\n');
+today = datestr(now, 'dd/mm/yyyy');
+fprintf(file_id, 'Data logging initiated - %s\n', today);
+fprintf(file_id, 'Location - London\n\n');
+
+%loop to display the temperature reading at every minute
+for minute = 0:10
+    index = minute*60+1
+    fprintf(file_id, 'Minute\t\t\t%d\n', minute);
+    fprintf(file_id, 'Temperature\t\t%.2f C\n\n', temperature(index));
+end
+
+fprintf(file_id, 'Max temp\t\t%.2f C\n', maxTemp);
+fprintf(file_id, 'Min temp\t\t%.2f C\n', minTemp);
+fprintf(file_id, 'Average temp\t%.2f C\n\n', avgTemp);
+
+fprintf('Data logging terminated\n');
+
+fclose(file_id);
 
 %% TASK 2 - LED TEMPERATURE MONITORING DEVICE IMPLEMENTATION [25 MARKS]
+clear
+a = arduino();
+temp_monitor(a, 'A0','D6', 'D5', 'D7');
 
+timeData = [];
+tempData = [];
+startTime = datetime ('now')
 
+figure
+tempPlot = plot(time,tempC)
+xlabel('Time,s')
+ylabel('Temperature, °C')
+title('Temperature/Time graph')
 
 
 %% TASK 3 - ALGORITHMS – TEMPERATURE PREDICTION [25 MARKS]
