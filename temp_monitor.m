@@ -1,3 +1,7 @@
+% Hanna Abraham
+% egyha7@nottingham.ac.uk
+
+%% 
 clear
 
 function temp_monitor (a, an, g, y, r)
