@@ -110,15 +110,6 @@ clear
 a = arduino();
 temp_monitor(a, 'A0','D6', 'D5', 'D7');
 
-timeData = [];
-tempData = [];
-startTime = datetime ('now')
-
-figure
-tempPlot = plot(time,tempC)
-xlabel('Time,s')
-ylabel('Temperature, °C')
-title('Temperature/Time graph')
 
 
 %% TASK 3 - ALGORITHMS – TEMPERATURE PREDICTION [25 MARKS]
