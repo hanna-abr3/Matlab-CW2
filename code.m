@@ -114,7 +114,7 @@ temp_monitor(a, 'A0','D6', 'D5', 'D7');
 
 %% TASK 3 - ALGORITHMS – TEMPERATURE PREDICTION [25 MARKS]
 
-% Insert answers here
+a = arduino();
 
 
 %% TASK 4 - REFLECTIVE STATEMENT [5 MARKS]
