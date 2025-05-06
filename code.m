@@ -105,22 +105,21 @@ fprintf(file_id, 'Data logging terminated\n');
 fclose(file_id);
 
 %% TASK 2 - LED TEMPERATURE MONITORING DEVICE IMPLEMENTATION [25 MARKS]
-clear a
+clear    %clear existing arduino object and variables in workspace
 
-a = arduino();
-temp_monitor(a, 'A0','D6', 'D5','D7');
+a = arduino();    %new connection to arduino board
+temp_monitor(a, 'A0','D6', 'D5','D7');   %the analogue input pin and the 3 digital output pins
 
-doc temp_monitor
+doc temp_monitor    %displays documentation in command window
 
 %% TASK 3 - ALGORITHMS – TEMPERATURE PREDICTION [25 MARKS]
 
-clear
+clear    %clear existing arduino object and variables in workspace 
 
-a = arduino();
-temp_prediction(a, 'A0','D6', 'D5','D7');
+a = arduino();    %new connection to arduino board
+temp_prediction(a, 'A0','D6', 'D5','D7');   %the analogue input pin and the 3 digital output pins
 
-doc temp_prediciton
-
+doc temp_prediction  %displays documentation in command window
 
 %% TASK 4 - REFLECTIVE STATEMENT [5 MARKS]
 
