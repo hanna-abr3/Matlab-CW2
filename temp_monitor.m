@@ -35,7 +35,7 @@ figure
         tempLog(end+1) = tempC;
 
         % Plot live graph
-        plot(t, tempLog, 'b', 'LineWidth', 2);
+        plot(t, tempLog, 'b', 'LineWidth', );
         xlabel('Time (s)');
         ylabel('Temperature (°C)');
         title('Live Temperature Monitoring');
@@ -59,15 +59,17 @@ figure
   
         if tempC >= 18 & tempC <= 24
             writeDigitalPin(a, g, 1);
-            pause(0.5); 
+            pause(1); 
         elseif tempC < 18
             writeDigitalPin(a, y, 1);
             pause(0.5);
             writeDigitalPin(a, y, 0);
+            pause(0.5);
         else
             writeDigitalPin(a, r, 1);
             pause(0.25);
             writeDigitalPin(a, r, 0);
+            pause(0.25);
         end
     end
 end
