@@ -35,9 +35,9 @@ for t = 1:duration
     volts = readVoltage(a, analogPin);
     tempC = (volts - V0)/ TC;      %converts voltage into temperature
     
-    voltage(t) = volts
+    voltage(t) = volts;
     temperature(t) = tempC;
-    time(t) = t
+    time(t) = t;
     pause(1);
 end
 
@@ -79,7 +79,6 @@ fprintf('Data logging terminated\n');
 
 
 %e)
-clear
 
 file_id = fopen('cabin_temperature.txt','w');
 
@@ -92,7 +91,7 @@ fprintf(file_id, 'Location - London\n\n');
 
 %loop to display the temperature reading at every minute
 for minute = 0:10
-    index = minute*60+1
+    index = minute*60+1;
     fprintf(file_id, 'Minute\t\t\t%d\n', minute);
     fprintf(file_id, 'Temperature\t\t%.2f C\n\n', temperature(index));
 end
@@ -101,25 +100,41 @@ fprintf(file_id, 'Max temp\t\t%.2f C\n', maxTemp);
 fprintf(file_id, 'Min temp\t\t%.2f C\n', minTemp);
 fprintf(file_id, 'Average temp\t%.2f C\n\n', avgTemp);
 
-fprintf('Data logging terminated\n');
+fprintf(file_id, 'Data logging terminated\n');
 
 fclose(file_id);
 
 %% TASK 2 - LED TEMPERATURE MONITORING DEVICE IMPLEMENTATION [25 MARKS]
-clear
+clear a
+
 a = arduino();
-temp_monitor(a, 'A0','D6', 'D5', 'D7');
+temp_monitor(a, 'A0','D6', 'D5','D7');
 
-
+doc temp_monitor
 
 %% TASK 3 - ALGORITHMS – TEMPERATURE PREDICTION [25 MARKS]
 
+clear
+
 a = arduino();
+temp_prediction(a, 'A0','D6', 'D5','D7');
+
+doc temp_prediciton
 
 
 %% TASK 4 - REFLECTIVE STATEMENT [5 MARKS]
 
-% Insert reflective statement here (400 words max)
+
+%This aim of this coursework was to code a system that monitors the cabin temperature to make sure it is within a range of 18-24degrees C. 
+% Green, yellow and red LEDs were coded to highlight when cabin temperature was at a comfortable/ uncomfortable temperature. 
+% The system is also able to monitor temperature trends and predict future values effectively. 
+% The project however, did come with some limitations. The temperature conversion assumed ideal sensor which may not reflect real-life conditions.
+%The system also may have some sudden noise spikes. 
+% A challenging part of this coursework was setting up the breadboard and Arduino, connecting the wires to produce a complete circuit on the breadboard was quite confusing at first. 
+% Managing existing Arduino objects in the workspace caused repeated connection errors until I learnt how to properly clear them.  
+% In the future I would iterate the code to have basic signal smoothing to minimize noise and include live logging to a file to further analyse the results. 
+% Multiple sensors across the cabin would also be beneficial as it would provide more data for further analysis of cabin temperatures.
+
 
 
 %% TASK 5 - COMMENTING, VERSION CONTROL AND PROFESSIONAL PRACTICE [15 MARKS]
